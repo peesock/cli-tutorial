@@ -56,6 +56,20 @@ glob matching: the `*` symbol is used to "glob match" for files, where * means a
 what actually happens syntactically is the shell takes the list of files it found and inserts it directly into the command line. so `cp *.jpg Pictures/` turns into `cp cat.jpg dawg.jpg 'Andrew Jackson.jpg' Pictures/`.
 globs do not work inside quotes.
 
+piping: piping is the process of sending text or other data from the output of one command into the input of another. to send the output of `ls` to a "pager" `less` so you can scroll and search through the results:
+```
+$ ls /bin | less
+```
+`less` is very important if working in a TTY terminal where you can't scroll up and see the full results of a command.
+
+piping is used fairly extensively whenever you need to process text, for example:
+```
+find "/tmp/$USER/screenshot" -maxdepth 1 -type f -printf '%T+\t%p\n' |\
+sort -nr | cut -f2 | xargs file --mime-type  2>/dev/null |\
+grep -F 'image/' | cut -d ':' -f 1 | head -n1
+```
+finds all files in `/tmp/$USER/screenshot` and precedes each filename with a timestamp, sorts them numerically, cuts off the timestamp, sends the filenames to `file` to detect the file type, filters for the "image" file type, cuts off the file type info, and selects the top line. in other words, it finds the most recent image in that folder.
+
 ### Keybinds
 - <Up>/<Down> - go through command history
 - <Tab> - completes command names, directory and file names, and if supported, command options. press tab once to complete if there's only 1 possible option, twice to see a list of options otherwise. very useful binding.
