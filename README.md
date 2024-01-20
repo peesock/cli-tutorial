@@ -30,7 +30,7 @@ if it says "bash: permission denied" or something, the file probably isn't marke
 ### Special Syntax
 the shell is a programming language. this means it has a lot of syntax with special meanings.
 
-variables: `$` next to a word like `$appleSauce` tells the shell to look for and print the "appleSauce" variable content.
+- variables: `$` next to a word like `$appleSauce` tells the shell to look for and print the "appleSauce" variable content.
 ```
 $ appleSauce=gooberosity
 $ echo $appleSauce
@@ -38,9 +38,9 @@ gooberosity
 ```
 variables in ALL CAPS represent environment variables, which have their own section further down. however, the capitalization is just standard notation and you can do whatever you want.
 
-comments: any text that follows `#` is a comment, and will never be executed as code.
+- comments: any text that follows `#` is a comment, and will never be executed as code.
 
-word splitting: the shell has a useful but very annoying concept called "word splitting." you've noticed that all shell arguments are separated by whitespace (spaces or tabs), but what happens when you evaluate a variable with whitespace, like "foto folder"? it's not read as a single argument with whitespace, but 2 separate arguments. to specify 1 arg, use quotes:
+- word splitting: the shell has a useful but very annoying concept called "word splitting." you've noticed that all shell arguments are separated by whitespace (spaces or tabs), but what happens when you evaluate a variable with whitespace, like "foto folder"? it's not read as a single argument with whitespace, but 2 separate arguments. to specify 1 arg, use quotes:
 ```
 $ file="foto folder"
 $ touch $file # created 2 files
@@ -51,12 +51,12 @@ $ ls
 folder  foto  'foto folder'
 ```
 
-glob matching: the `*` symbol is used to "glob match" for files, where * means any possible string of characters. if you run `ls *.png` then it will list all files ending in .png.
+- glob matching: the `*` symbol is used to "glob match" for files, where * means any possible string of characters. if you run `ls *.png` then it will list all files ending in .png.
 
 what actually happens syntactically is the shell takes the list of files it found and inserts it directly into the command line. so `cp *.jpg Pictures/` turns into `cp cat.jpg dawg.jpg 'Andrew Jackson.jpg' Pictures/`.
 globs do not work inside quotes.
 
-piping: piping is the process of sending text or other data from the output of one command into the input of another. to send the output of `ls` to a "pager" `less` so you can scroll and search through the results:
+- piping: piping is the process of sending text or other data from the output of one command into the input of another. to send the output of `ls` to a "pager" `less` so you can scroll and search through the results:
 ```
 $ ls /bin | less
 ```
