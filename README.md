@@ -52,12 +52,13 @@ folder  foto  'foto folder'
 ```
 
 glob matching: the `*` symbol is used to "glob match" for files, where * means any possible string of characters. if you run `ls *.png` then it will list all files ending in .png.
+
 what actually happens syntactically is the shell takes the list of files it found and inserts it directly into the command line. so `cp *.jpg Pictures/` turns into `cp cat.jpg dawg.jpg 'Andrew Jackson.jpg' Pictures/`.
 globs do not work inside quotes.
 
 ### Keybinds
-- UP/DOWN - go through command history
-- TAB - completes command names, directory and file names, and if supported, command options. press tab once to complete if there's only 1 possible option, twice to see a list of options otherwise. very useful binding.
+- <Up>/<Down> - go through command history
+- <Tab> - completes command names, directory and file names, and if supported, command options. press tab once to complete if there's only 1 possible option, twice to see a list of options otherwise. very useful binding.
 - ctrl-c - cancels the currently running command
 - ctrl-z - pauses the currently running command, can be resumed later with `fg` or `bg`.
 
@@ -76,6 +77,7 @@ command -?
 command
 ```
 where `man` is the "manual" command that offers more-or-less complete guides on each command. otherwise, you're using an obscure tool that hopefully has online documentation.
+
 note that sometimes the command name of a program (the executable found in $PATH) is different from its manual name.
 
 ### Common Commands
@@ -108,7 +110,7 @@ in linux, there are permissions for reading, writing, and executing files for di
 $ chmod +x executable-file
 ```
 
-### Folders vs Files
+### Files vs Directories
 the way permissions work on files vs directories is a little confusing. if a directory is read-only for your user, you can't create or delete any files inside it. however, it's still possible to edit the files inside it, if they give you access. if the files are read-only, you can still delete them if the directory permits it.
 
 ## Files
@@ -126,14 +128,14 @@ if you know the executable name of your favorite graphical editor, you can use t
 - geany
 - notepadqq
 
-of course these can also be accessed through the graphical file manager, but this is a cli tutorial.
+of course these can also be accessed through a graphical file manager, but this is a cli tutorial.
 
 ### Links and Symlinks
 links are useful when you need the same file in 2 or more locations at once.
 
 when you link a file, you're taking the location of the file and using it to create another file, where both files refer to the same data. changing one link will change the other, because they're the same thing, but in different locations or have different names.
 
-symlinks or symbolic links tend to be more useful, as they "link" on the filesystem-scale, meaning you always know the location of the source file or directory, and can also link entire directories.
+symlinks or symbolic links tend to be more useful, as they "link" on the filesystem-scale, meaning you always know the location of the source, and can also link entire directories.
 
 links or hard links work by copying an "inode"'s location and making a new file out of it. all hard links are identical to each other; there is no "original" link that can be pointed to, and you cannot hard link directories. the major benefit of hard links is you can delete any copy you want, and the others will remain fine, while deleting the source file of a symlink will just delete all the data.
 
@@ -148,7 +150,7 @@ every directory will contain 2 "fake" directories, `.` and `..`, which refer to 
 ## Environment Variables
 each process (running program) in a linux system will contain a list of variables that it can use to obtain information about the environment it's runnning in. there are many typical environment variables, all of which use ALL_CAPS_SNAKECASE notation, although it's not required.
 
-for example, `echo $HOME` shows your user's home directory at /home/username, EDITOR contains your default CLI text editor, and SHELL contains your login shell, usually `/bin/bash`. you can dump your entire environment to the terminal by running `env`.
+for example, `echo $HOME` shows your user's home directory at `/home/username`, EDITOR contains your default cli text editor, and SHELL contains your login shell, usually `/bin/bash`. you can dump your entire environment to the terminal by running `env`.
 
 child processes will inherit their parents' environment, unless it is explicitly changed by something like the `env` program. your user has its own set of env variables that are set in a shell startup file, which for most distros will be `~/.bash_profile`. all programs the user starts after login will be spawned from that initial shell, so if you want to change your global environment, change this file.
 
@@ -189,7 +191,7 @@ symlinks everything in a certain package's `scripts` folder to `~/.local/bin`.
 see the Files section for an explanation on symlinks.
 
 ## Extra Utilities
-there are some CLI tools that are so useful out of the box that i'd recommend them even to loser noobs like you, if you're allowed to install programs.
+there are some cli tools that are so useful out of the box that i'd recommend them even to loser noobs like you, if you're allowed to install programs.
 
 ### Ranger
 a terminal file manager is extremely useful. i use [lf](https://github.com/gokcehan/lf), but this isn't in debian repos and is more minimal, so you can install `ranger` instead which is the same thing but fancier (and slower).
