@@ -128,6 +128,15 @@ if you know the executable name of your favorite graphical editor, you can use t
 
 of course these can also be accessed through the graphical file manager, but this is a cli tutorial.
 
+### Links and Symlinks
+links are useful when you need the same file in 2 or more locations at once.
+
+when you link a file, you're taking the location of the file and using it to create another file, where both files refer to the same data. changing one link will change the other, because they're the same thing, but in different locations or have different names.
+
+symlinks or symbolic links tend to be more useful, as they "link" on the filesystem-scale, meaning you always know the location of the source file or directory, and can also link entire directories.
+
+links or hard links work by copying an "inode"'s location and making a new file out of it. all hard links are identical to each other; there is no "original" link that can be pointed to, and you cannot hard link directories. the major benefit of hard links is you can delete any copy you want, and the others will remain fine, while deleting the source file of a symlink will just delete all the data.
+
 ### OS-level Differences
 unlike windows, linux files are extremely flexible. their filenames can use any character at all except for `/` and null bytes and can reach 255 chars in length. there are no reserved filenames.
 no file extensions are needed; all file types are detected by actually *reading* the file, which can be demoed with `file --mime-type image.png`
@@ -170,6 +179,14 @@ $ export PATH="$HOME/.local/bin:$PATH"
 $ echo $PATH # after modification
 /home/username/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin
 ```
+
+of course, you can also place the files you need into a PATH directory. for locally-built packages, you may want to add `$HOME/.local/bin` to PATH and then either move, copy, or symlink the executable into that directory. for instance:
+```
+ln -s package/scripts/* ~/.local/bin
+```
+symlinks everything in a certain package's `scripts` folder to `~/.local/bin`.
+
+see the Files section for an explanation on symlinks.
 
 ## Extra Utilities
 there are some CLI tools that are so useful out of the box that i'd recommend them even to loser noobs like you, if you're allowed to install programs.
