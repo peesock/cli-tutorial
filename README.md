@@ -1,5 +1,7 @@
-# Linux CLI tutorial
+# Linux CLI Tutorial
 this tutorial assumes you basically came from windows and you're trying out linux either for fun or to get work done. it won't provide everything you need, but will get you off the ground with syntax and some examples.
+
+If you need keywords, search for them. ctrl-f, /, or \<F3\> in browser.
 
 ## Shell
 ### Prompt
@@ -15,13 +17,15 @@ prompt ^ |  |  |        |                 |
 command  ^  |  |        |                 |
 arguments   ^  ^        ^                 ^
 ```
-where you're running the `cp` command and giving it 4 arguments, telling it to copy 2 photos to the `Pictures` directory. the `-v` flag is covered under the commands section.
+this is running the `cp` command and giving it 4 arguments, telling it to copy 2 photos to the `Pictures` directory. the `-v` flag is covered under the commands section.
 
-sometimes you need to download an executable script or binary file and run it directly. to do this, simply provide the path to the file.
+sometimes, you need to download an executable script or binary file and run it directly. to do this, simply provide the path to the file.
 ```
 $ scripts/foto-odserver -flags argument1 arg2
 ```
 the shell assumes you want a command by default, so if the `foto-odserver` file is in your current directory, you can't just run `foto-odserver`, instead you need `./foto-odserver` where the `.` represents the current directory. similarly, `..` means the previous dir. the `/` tells the shell that you're specifying the path to an actual file.
+
+if it says "bash: permission denied" or something, the file probably isn't marked as executable. see the Root and Permissions section (or just run `chmod +x foto-odserver`).
 
 ### Special Syntax
 the shell is a programming language. this means it has a lot of syntax with special meanings.
@@ -179,6 +183,7 @@ a terminal file manager is extremely useful. i use [lf](https://github.com/gokce
 - E to edit with EDITOR
 - zh to toggle hidden files
 - o to sort files
+- \<Return\> to open file in default application
 
 etc.
 
