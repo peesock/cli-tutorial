@@ -121,6 +121,7 @@ if you know the executable name of your favorite graphical editor, you can use t
 - xed - Cinnamon (Linux Mint) editor
 - geany
 - notepadqq
+
 of course these can also be accessed through the graphical file manager, but this is a cli tutorial.
 
 ### OS-level Differences
@@ -166,10 +167,10 @@ $ echo $PATH # after modification
 /home/username/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin
 ```
 
-## extra utilities
+## Extra Utilities
 there are some CLI tools that are so useful out of the box that i'd recommend them even to loser noobs like you, if you're allowed to install programs.
 
-### ranger
+### Ranger
 a terminal file manager is extremely useful. i use [lf](https://github.com/gokcehan/lf), but this isn't in debian repos and is more minimal, so you can install `ranger` instead which is the same thing but fancier (and slower).
 - \<F1\> to view help
 - h,j,k,l or arrow keys to navigate
@@ -178,9 +179,10 @@ a terminal file manager is extremely useful. i use [lf](https://github.com/gokce
 - E to edit with EDITOR
 - zh to toggle hidden files
 - o to sort files
+
 etc.
 
-### network file transfer
+### Network File Transfer
 [croc](https://github.com/schollz/croc) lets you transfer files extremely quickly over the internet or over LAN between any 2 computers, no cloud service needed. it does NOT have a debian package because debian sucks, so debianers can install Magic Wormhole through the `wormhole-william` package, which does the same thing but worse.
 
 if you only need LAN transfer, you can use `rsync`, for which there's a ton of guides.
