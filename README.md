@@ -1,7 +1,7 @@
 # Linux CLI Tutorial
 this tutorial assumes you basically came from windows and you're trying out linux either for fun or to get work done. it won't provide everything you need, but will get you off the ground with syntax and some examples.
 
-If you need keywords, search for them. ctrl-f, /, or \<F3\> in browser.
+If you need keywords, search for them. `ctrl-f`, `/`, or `<F3>` in browser.
 
 ## Shell
 ### Prompt
@@ -17,7 +17,7 @@ prompt ^ |  |  |        |                 |
 command  ^  |  |        |                 |
 arguments   ^  ^        ^                 ^
 ```
-this is running the `cp` command and giving it 4 arguments, telling it to copy 2 photos to the `Pictures` directory. the `-v` flag is covered under the commands section.
+this is running the `cp` command and giving it 4 arguments, telling it to copy 2 photos to the `Pictures` directory. the `-v` flag is covered under the Commands section.
 
 sometimes, you need to download an executable script or binary file and run it directly. to do this, simply provide the path to the file.
 ```
@@ -43,10 +43,10 @@ variables in ALL CAPS represent environment variables, which have their own sect
 - word splitting: the shell has a useful but very annoying concept called "word splitting." you've noticed that all shell arguments are separated by whitespace (spaces or tabs), but what happens when you evaluate a variable with whitespace, like "foto folder"? it's not read as a single argument with whitespace, but 2 separate arguments. to specify 1 arg, use quotes:
 ```
 $ file="foto folder"
-$ touch $file # created 2 files
+$ touch $file          # created 2 files
 $ ls
 folder  foto
-$ touch "$file" # created 1 file
+$ touch "$file"        # created 1 file
 $ ls
 folder  foto  'foto folder'
 ```
@@ -72,9 +72,9 @@ finds all files in `/tmp/$USER/screenshot` and precedes each filename with a tim
 
 ### Keybinds
 - <Up>/<Down> - go through command history
-- <Tab> - completes command names, directory and file names, and if supported, command options. press tab once to complete if there's only 1 possible option, twice to see a list of options otherwise. very useful binding.
+- <Tab> - completes command names, directory and file names, and if supported, command options. press tab once to complete if there's only 1 possible option, twice to see a list of options otherwise
 - ctrl-c - cancels the currently running command
-- ctrl-z - pauses the currently running command, can be resumed later with `fg` or `bg`.
+- ctrl-z - pauses the currently running command, can be resumed later with `fg` or `bg`
 
 ## Commands
 commands don't *have* to follow any rules, but usually follow some sort of loose standard syntax:
@@ -175,11 +175,11 @@ export BROWSER=firefox
 export EDITOR=vim
 export XDG_CONFIG_HOME="$HOME/.config"
 ```
-remember to log out and log back in for this file to take effect, as it's not possible to send a signal to all running processes to change their environment.
+remember to log out and log back in for this file to take effect, as it's not possible to send a signal to all running processes to change their environment. they all have to be restarted.
 
-for testing purposes, you can use `export` in your current terminal so that all commands run on that terminal will use the updated environment.
+for testing purposes, you can run `export` commands in your current terminal so that all commands run on that terminal will use the updated environment.
 
-### PATH variable
+### PATH Variable
 a common env var to change is PATH, which outlines a colon-separated list of directories that the shell and other programs use to look for commands to execute. a sample output is:
 ```
 $ echo $PATH
@@ -189,10 +189,10 @@ outlining 4 directories to look for executables. you can `ls` these places to se
 
 to add another directory to PATH, simply combine the existing PATH variable with the path to your directory and separate them with a colon:
 ```
-$ echo $PATH # before modification
+$ echo $PATH           # before modification
 /usr/local/sbin:/usr/local/bin:/usr/bin
 $ export PATH="$HOME/.local/bin:$PATH"
-$ echo $PATH # after modification
+$ echo $PATH           # after modification
 /home/username/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin
 ```
 
@@ -205,12 +205,13 @@ symlinks everything in a certain package's `scripts` folder to `~/.local/bin`.
 see the Files section for an explanation on symlinks.
 
 ## Extra Utilities
-there are some cli tools that are so useful out of the box that i'd recommend them even to loser noobs like you, if you're allowed to install programs.
+there are some non-standard cli tools that are so useful out of the box that i'd recommend them even to loser noobs like you, assuming you're allowed to install programs.
 
-### Ranger
+### File Manager
 a terminal file manager is extremely useful. i use [lf](https://github.com/gokcehan/lf), but this isn't in debian repos and is more minimal, so you can install `ranger` instead which is the same thing but fancier (and slower).
 - \<F1\> to view help
 - h,j,k,l or arrow keys to navigate
+- q to quit
 - space to select
 - yy to yank(copy), dd to cut, pp to paste
 - E to edit with EDITOR
