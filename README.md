@@ -1,31 +1,37 @@
 # Linux CLI Tutorial
-this tutorial assumes you basically came from windows and you're trying out linux either for fun or to get work done. it won't provide everything you need, but will get you off the ground with syntax and some examples.
+this tutorial focuses on doing generic things in the command line, specifically in the context of following some other guide and copy/pasting all the commands correctly. this does necessitate some general linux knowledge (covered by this guide), but nothing related to your desktop UI.
 
-If you need keywords, search for them. `ctrl-f`, `/`, or `<F3>` in browser.
+it also assumes you know a little bit about computers, which would be the vast majority of anybody learning linux. if you've used Windows as anything more than a glorified Chrome kiosk, you'll be fine. remember to use search engines.
+
+if you need keywords, search for them. keybinds are `ctrl-f`, `/`, or `<F3>` in browser.
 
 ## Shell
 ### Prompt
-when you open a terminal, you will be greeted with a prompt. the most minimal prompt will be a single character, either `$` for a normal, unprivileged user, or `#` for the root, or "admin" user. It's good to know in case you're following a tutorial and suddenly the prompt changes, indicating you need root access.
+when you open a terminal, you will be greeted with a short line of text called a prompt, meant to give you basic information and tell you where you'll be typing commands. the most minimal prompt will be a single character, either `$` for a normal, unprivileged user, or `#` for the root, or "admin" user. see the Root and Permissions section for more info.
 
-more useful prompts will also show the current directory you're in, the default one being called "home," denoted by the `~` character. its actual path looks like `/home/username`, replaced with your actual username.
+more useful prompts will also show the current directory you're in, the default one being called "home," often denoted by the `~` character. its actual path looks like `/home/username`, replaced with your actual username. you can manually check your current working directory by running `pwd`:
+```
+$ pwd
+/home/andrew
+```
 
 ### Syntax
 basic command syntax goes like this:
 ```
-       $ cp -v foto.png path/to/foto2.jpg Pictures/
-prompt ^ |  |  |        |                 |
-command  ^  |  |        |                 |
-arguments   ^  ^        ^                 ^
+         $ cp -v foto.png path/to/foto2.jpg Pictures/
+prompt   ^ |  |  |        |                 |
+command    ^  |  |        |                 |
+arguments     ^  ^        ^                 ^
 ```
 this is running the `cp` command and giving it 4 arguments, telling it to copy 2 photos to the `Pictures` directory. the `-v` flag is covered under the Commands section.
 
 sometimes, you need to download an executable script or binary file and run it directly. to do this, simply provide the path to the file.
 ```
-$ scripts/foto-odserver -flags argument1 arg2
+$ scripts/foto-tagger -flags argument1 arg2
 ```
-the shell assumes you want a command by default, so if the `foto-odserver` file is in your current directory, you can't just run `foto-odserver`, instead you need `./foto-odserver` where the `.` represents the current directory. similarly, `..` means the previous dir. the `/` tells the shell that you're specifying the path to an actual file.
+the shell assumes you want a command by default, so if the `foto-tagger` file is in your current directory, you can't just run `foto-tagger`, instead you need `./foto-tagger` where the `.` represents the current directory. similarly, `..` means the previous dir. the `/` tells the shell that you're specifying the path to an actual file.
 
-if it says "bash: permission denied" or something, the file probably isn't marked as executable. see the Root and Permissions section (or just run `chmod +x foto-odserver`).
+if it says "bash: permission denied" or something, the file probably isn't marked as executable. see the Root and Permissions section (or just run `chmod +x foto-tagger`).
 
 ### Special Syntax
 the shell is a programming language. this means it has a lot of syntax with special meanings.
@@ -154,12 +160,12 @@ symlinks or symbolic links tend to be more useful, as they "link" on the filesys
 links or hard links work by copying an "inode"'s location and making a new file out of it. all hard links are identical to each other; there is no "original" link that can be pointed to, and you cannot hard link directories. the major benefit of hard links is you can delete any copy you want, and the others will remain fine, while deleting the source file of a symlink will just delete all the data.
 
 ### OS-level Differences
-unlike windows, linux files are extremely flexible. their filenames can use any character at all except for `/` and null bytes and can reach 255 chars in length. there are no reserved filenames.
-no file extensions are needed; all file types are detected by actually *reading* the file, which can be demoed with `file --mime-type image.png`
+unlike windows, linux files are extremely flexible. filenames can use any character/byte at all, except for `/` and null bytes (often repesented by `\0`), and can reach 255 chars in length. there are no reserved filenames.
+no file extensions are needed; all file types are detected by actually *reading* the file, which can be demoed with `file image.png`
 
-there are also many "special" files in linux, which may not represent real files, but rather things like USB devices, hard drives, audio ports, memory, or even a random number generator. most of these are found in `/dev`. the significance of these is that you can still operate on them like real files, whether it works or not.
+there are also many "special" files in linux, which may not represent real files, but rather things like USB devices, hard drives, audio ports, memory, or even a random number generator. most of these are found in `/dev`. the significance of these is that you can still operate on them like real files, so all the file editing utils you already have on the command line can still apply. for instance, `cat /dev/urandom` will screw up your terminal with an endless stream of random bytes, but `head /dev/urandom` will only pull 10 lines before stopping.
 
-every directory will contain 2 "fake" directories, `.` and `..`, which refer to the current and previous directories respectively. `path/to/dir/.` resolves to `path/to/dir`, `path/to/dir/../..` resolves to `path`.
+every directory will contain 2 "fake" directories, `.` and `..`, which refer to the current and previous directories respectively. `path/to/dir/.` resolves to `path/to/dir`, and `path/to/dir/../..` resolves to `path`.
 
 ## Environment Variables
 each process (running program) in a linux system will contain a list of variables that it can use to obtain information about the environment it's runnning in. there are many typical environment variables, all of which use ALL_CAPS_SNAKECASE notation, although it's not required.
